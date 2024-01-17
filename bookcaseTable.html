@@ -1,41 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ikeas bookcase</title>
-  <link rel="stylesheet" href="tablalibreria.css">
+  <title>Tabla con Búsqueda y Ordenación sin Bibliotecas Externas</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
 
+    th, td {
+      border: 1px solid #e4e2d6;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #066fb7;
+      color: #fbdc37;
+      cursor: pointer;
+    }
+
+    .search-input {
+      width: 100%;
+      box-sizing: border-box;
+    }
+  </style>
 </head>
-
 <body>
-  <table>
-    <thead>
-      <tr>
-        <th>SERIE</th>
-        <th>MATERIAL</th>
-        <th>ANCHO</th>
-        <th>FONDO</th>
-        <th>ALTO</th>
-        <th>COLOR</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Filas generadas automáticamente -->
-      <!-- Puedes ajustar los valores según tus necesidades -->
-      <tr>
-        <td>1</td>
-        <td>Material A</td>
-        <td>20cm</td>
-        <td>10cm</td>
-        <td>15cm</td>
-        <td>Azul</td>
-      </tr>
-      <!-- Repite esta estructura para las demás filas -->
-      <!-- ... -->
-    </tbody>
-  </table>
-</body>
 
+<table id="miTabla">
+  <thead>
+    <tr>
+      <th>
+        <input class="search-input" placeholder="Buscar Serie" oninput="searchTable(0)">
+      </th>
+      <th>
+        <input class="search-input" placeholder="Buscar Material" oninput="searchTable(1)">
+      </th>
+      <th>
+        <input class="search-input" placeholder="Buscar Ancho" oninput="searchTable(2)">
+      </th>
+      <th>
+        <input class="search-input" placeholder="Buscar Fondo" oninput="searchTable(3)">
+      </th>
+      <th>
+        <input class="search-input" placeholder="Buscar Alto" oninput="searchTable(4)">
+      </th>
+      <th>
+        <input class="search-input" placeholder="Buscar Color" oninput="searchTable(5)">
+      </th>
+    </tr>
+    <tr>
+      <th onclick="sortTable(0)">SERIE</th>
+      <th onclick="sortTable(1)">MATERIAL</th>
+      <th onclick="sortTable(2)">ANCHO</th>
+      <th onclick="sortTable(3)">FONDO</th>
+      <th onclick="sortTable(4)">ALTO</th>
+      <th onclick="sortTable(5)">COLOR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Tus datos aquí -->
+    <tr>
+      <td>1</td>
+      <td>Material B</td>
+      <td>25</td>
+      <td>12</td>
+      <td>18</td>
+      <td>Rojo</td>
+    </tr>
+     <tr>
+      <td>2</td>
+      <td>Material c</td>
+      <td>22, 32, 60</td>
+      <td>22, 80,120</td>
+      <td>22, 40, 60</td>
+      <td>Verde</td>
+    </tr>
+            <tr>
+      <td>2</td>
+      <td>Material c</td>
+      <td>33, 50, 75</td>
+      <td>23, 45, 90</td>
+      <td>43, 120, 150</td>
+      <td>Lila</td>
+    </tr>
+    <!-- Repite esta estructura para las demás filas -->
+    <!-- ... -->
+  </tbody>
+</table>
+
+<script>
+  function sortTable(columnIndex) {
+    const table = document.getElementById("miTabla");
+    const rows = Array.from(table.rows).slice(2); // Exclude the header rows
+
+    rows.sort((a, b) => {
+      const aValue = a.cells[columnIndex].textContent.trim();
+      const bValue = b.cells[columnIndex].textContent.trim();
+
+      return isNaN(aValue) ? aValue.localeCompare(bValue) : aValue - bValue;
+    });
+
+    // Remove existing rows
+    rows.forEach(row => table.tBodies[0].appendChild(row));
+
+    // Toggle sorting direction
+    const th = table.tHead.rows[1].cells[columnIndex];
+    th.isAscending = !th.isAscending;
+    th.style.backgroundColor = th.isAscending ? "#066fb7" : "#067fb7";
+  }
+
+  function searchTable(columnIndex) {
+    const input = document.getElementsByClassName("search-input")[columnIndex];
+    const filter = input.value.toUpperCase();
+    const table = document.getElementById("miTabla");
+    const rows = table.tBodies[0].rows;
+
+    for (let i = 0; i < rows.length; i++) {
+      const cellValue = rows[i].cells[columnIndex].textContent || rows[i].cells[columnIndex].innerText;
+      if (cellValue.toUpperCase().indexOf(filter) > -1) {
+        rows[i].style.display = "";
+      } else {
+        rows[i].style.display = "none";
+      }
+    }
+  }
+</script>
+
+</body>
 </html>
