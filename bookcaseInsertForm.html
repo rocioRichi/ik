@@ -29,90 +29,88 @@
 <form id="miFormulario">
   <label for="serie">Serie:</label>
   <input type="text" id="serie" name="serie" required>
-<br>
+  <br>
   <label for="material">Material:</label>
   <input type="text" id="material" name="material" required>
-<br>
+  <br>
   <label for="ancho">Ancho:</label>
   <input type="text" id="ancho" name="ancho" required>
-<br>
+  <br>
   <label for="fondo">Fondo:</label>
   <input type="text" id="fondo" name="fondo" required>
-<br>
+  <br>
   <label for="alto">Alto:</label>
   <input type="text" id="alto" name="alto" required>
-<br>
+  <br>
   <label for="color">Color:</label>
   <input type="text" id="color" name="color" required>
-<br><br>
+  <br><br>
   <button type="button" onclick="agregarFila()">Agregar a la tabla</button>
-
 </form>
 
+<table id="miTabla">
+  <thead>
+    <tr>
+      <th onclick="sortTable(0)">SERIE</th>
+      <th onclick="sortTable(1)">MATERIAL</th>
+      <th onclick="sortTable(2)">ANCHO</th>
+      <th onclick="sortTable(3)">FONDO</th>
+      <th onclick="sortTable(4)">ALTO</th>
+      <th onclick="sortTable(5)">COLOR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Tus datos aquí -->
+  </tbody>
 </table>
-  
-  <a href="index.html">Ir al Formulario</a>
+
+<a href="index.html">Ir al Formulario</a>
 
 <script>
   document.addEventListener("DOMContentLoaded", function() {
-  function agregarFila() {
-    // Obtener los valores del formulario
-    const serie = document.getElementById('serie').value;
-    const material = document.getElementById('material').value;
-    const ancho = document.getElementById('ancho').value;
-    const fondo = document.getElementById('fondo').value;
-    const alto = document.getElementById('alto').value;
-    const color = document.getElementById('color').value;
+    // Tu código actual de script.js aquí
+    function agregarFila() {
+      // Obtener los valores del formulario
+      const serie = document.getElementById('serie').value;
+      const material = document.getElementById('material').value;
+      const ancho = document.getElementById('ancho').value;
+      const fondo = document.getElementById('fondo').value;
+      const alto = document.getElementById('alto').value;
+      const color = document.getElementById('color').value;
 
-    // Crear una nueva fila
-    const tabla = document.getElementById('miTabla');
-    const nuevaFila = tabla.tBodies[0].insertRow();
-    nuevaFila.insertCell(0).textContent = serie;
-    nuevaFila.insertCell(1).textContent = material;
-    nuevaFila.insertCell(2).textContent = ancho;
-    nuevaFila.insertCell(3).textContent = fondo;
-    nuevaFila.insertCell(4).textContent = alto;
-    nuevaFila.insertCell(5).textContent = color;
+      // Crear una nueva fila
+      const tabla = document.getElementById('miTabla');
+      const nuevaFila = tabla.tBodies[0].insertRow();
+      nuevaFila.insertCell(0).textContent = serie;
+      nuevaFila.insertCell(1).textContent = material;
+      nuevaFila.insertCell(2).textContent = ancho;
+      nuevaFila.insertCell(3).textContent = fondo;
+      nuevaFila.insertCell(4).textContent = alto;
+      nuevaFila.insertCell(5).textContent = color;
 
-    // Limpiar los campos del formulario
-    document.getElementById('miFormulario').reset();
-}
+      // Limpiar los campos del formulario
+      document.getElementById('miFormulario').reset();
+    }
 
-function sortTable(columnIndex) {
-    const table = document.getElementById("miTabla");
-    const rows = Array.from(table.rows).slice(1); // Exclude the header row
+    function sortTable(columnIndex) {
+      const table = document.getElementById("miTabla");
+      const rows = Array.from(table.rows).slice(1); // Exclude the header row
 
-    rows.sort((a, b) => {
+      rows.sort((a, b) => {
         const aValue = a.cells[columnIndex].textContent.trim();
         const bValue = b.cells[columnIndex].textContent.trim();
 
         return isNaN(aValue) ? aValue.localeCompare(bValue) : aValue - bValue;
-    });
+      });
 
-    // Remove existing rows
-    rows.forEach(row => table.tBodies[0].appendChild(row));
+      // Remove existing rows
+      rows.forEach(row => table.tBodies[0].appendChild(row));
 
-    // Toggle sorting direction
-    const th = table.tHead.rows[0].cells[columnIndex];
-    th.isAscending = !th.isAscending;
-    th.style.backgroundColor = th.isAscending ? "#066fb7" : "#067fb7";
-}
-
-function searchTable(columnIndex) {
-    const input = document.getElementsByClassName("search-input")[columnIndex];
-    const filter = input.value.toUpperCase();
-    const table = document.getElementById("miTabla");
-    const rows = table.tBodies[0].rows;
-
-    for (let i = 0; i < rows.length; i++) {
-        const cellValue = rows[i].cells[columnIndex].textContent || rows[i].cells[columnIndex].innerText;
-        if (cellValue.toUpperCase().indexOf(filter) > -1) {
-            rows[i].style.display = "";
-        } else {
-            rows[i].style.display = "none";
-        }
+      // Toggle sorting direction
+      const th = table.tHead.rows[0].cells[columnIndex];
+      th.isAscending = !th.isAscending;
+      th.style.backgroundColor = th.isAscending ? "#066fb7" : "#067fb7";
     }
-}
   });
 </script>
 </body>
