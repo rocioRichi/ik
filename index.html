@@ -100,43 +100,7 @@
   </tbody>
 </table>
 <a href="bookcaseInsertForm.html">Insertar librerias</a>
-<script>
-  function sortTable(columnIndex) {
-    const table = document.getElementById("miTabla");
-    const rows = Array.from(table.rows).slice(2); // Exclude the header rows
 
-    rows.sort((a, b) => {
-      const aValue = a.cells[columnIndex].textContent.trim();
-      const bValue = b.cells[columnIndex].textContent.trim();
-
-      return isNaN(aValue) ? aValue.localeCompare(bValue) : aValue - bValue;
-    });
-
-    // Remove existing rows
-    rows.forEach(row => table.tBodies[0].appendChild(row));
-
-    // Toggle sorting direction
-    const th = table.tHead.rows[1].cells[columnIndex];
-    th.isAscending = !th.isAscending;
-    th.style.backgroundColor = th.isAscending ? "#066fb7" : "#067fb7";
-  }
-
-  function searchTable(columnIndex) {
-    const input = document.getElementsByClassName("search-input")[columnIndex];
-    const filter = input.value.toUpperCase();
-    const table = document.getElementById("miTabla");
-    const rows = table.tBodies[0].rows;
-
-    for (let i = 0; i < rows.length; i++) {
-      const cellValue = rows[i].cells[columnIndex].textContent || rows[i].cells[columnIndex].innerText;
-      if (cellValue.toUpperCase().indexOf(filter) > -1) {
-        rows[i].style.display = "";
-      } else {
-        rows[i].style.display = "none";
-      }
-    }
-  }
-</script>
 
 </body>
 </html>
