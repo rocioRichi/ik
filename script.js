@@ -1,3 +1,4 @@
+  document.addEventListener("DOMContentLoaded", ready);
 function agregarFila() {
     // Obtener los valores del formulario
     const serie = document.getElementById('serie').value;
