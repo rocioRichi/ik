@@ -48,7 +48,7 @@ function searchTable(columnIndex) {
     const table = document.getElementById("miTabla");
     const rows = table.tBodies[0].rows;
 
-    for (let i = 0; i < rows.length; i++) {
+    for (let i = 1; i < rows.length; i++) {
         const cellValue = rows[i].cells[columnIndex].textContent || rows[i].cells[columnIndex].innerText;
         if (cellValue.toUpperCase().indexOf(filter) > -1) {
             rows[i].style.display = "";
