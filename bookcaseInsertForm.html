@@ -23,50 +23,7 @@
       cursor: pointer;
     }
   </style>
-</head>
-<body>
-
-<form id="miFormulario">
-  <label for="serie">Serie:</label>
-  <input type="text" id="serie" name="serie" required>
-  <br>
-  <label for="material">Material:</label>
-  <input type="text" id="material" name="material" required>
-  <br>
-  <label for="ancho">Ancho:</label>
-  <input type="text" id="ancho" name="ancho" required>
-  <br>
-  <label for="fondo">Fondo:</label>
-  <input type="text" id="fondo" name="fondo" required>
-  <br>
-  <label for="alto">Alto:</label>
-  <input type="text" id="alto" name="alto" required>
-  <br>
-  <label for="color">Color:</label>
-  <input type="text" id="color" name="color" required>
-  <br><br>
-  <button type="button" onclick="agregarFila()">Agregar a la tabla</button>
-</form>
-
-<table id="miTabla">
-  <thead>
-    <tr>
-      <th onclick="sortTable(0)">SERIE</th>
-      <th onclick="sortTable(1)">MATERIAL</th>
-      <th onclick="sortTable(2)">ANCHO</th>
-      <th onclick="sortTable(3)">FONDO</th>
-      <th onclick="sortTable(4)">ALTO</th>
-      <th onclick="sortTable(5)">COLOR</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- Tus datos aquí -->
-  </tbody>
-</table>
-
-<a href="index.html">Ir al Index</a>
-
-<script>
+  <script>
   document.addEventListener("DOMContentLoaded", function() {
     // Tu código actual de script.js aquí
     function agregarFila() {
@@ -113,5 +70,49 @@
     }
   });
 </script>
+</head>
+<body>
+
+<form id="miFormulario">
+  <label for="serie">Serie:</label>
+  <input type="text" id="serie" name="serie" required>
+  <br>
+  <label for="material">Material:</label>
+  <input type="text" id="material" name="material" required>
+  <br>
+  <label for="ancho">Ancho:</label>
+  <input type="text" id="ancho" name="ancho" required>
+  <br>
+  <label for="fondo">Fondo:</label>
+  <input type="text" id="fondo" name="fondo" required>
+  <br>
+  <label for="alto">Alto:</label>
+  <input type="text" id="alto" name="alto" required>
+  <br>
+  <label for="color">Color:</label>
+  <input type="text" id="color" name="color" required>
+  <br><br>
+  <button type="button" onclick="agregarFila()">Agregar a la tabla</button>
+</form>
+
+<table id="miTabla">
+  <thead>
+    <tr>
+      <th onclick="sortTable(0)">SERIE</th>
+      <th onclick="sortTable(1)">MATERIAL</th>
+      <th onclick="sortTable(2)">ANCHO</th>
+      <th onclick="sortTable(3)">FONDO</th>
+      <th onclick="sortTable(4)">ALTO</th>
+      <th onclick="sortTable(5)">COLOR</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Tus datos aquí -->
+  </tbody>
+</table>
+
+<a href="index.html">Ir al Index</a>
+
+
 </body>
 </html>
