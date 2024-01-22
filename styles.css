@@ -1,7 +1,6 @@
     table {
       border-collapse: collapse;
       width: 100%;
-        color:#fbdc37
     }
 
     th, td {
@@ -12,7 +11,7 @@
 
     th {
       background-color: #066fb7;
-        color:
+         color:#fbdc37
       cursor: pointer;
     }
 
